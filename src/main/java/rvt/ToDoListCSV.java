@@ -1,37 +1,47 @@
 package rvt;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.*;
 
 public class ToDoListCSV {
     private ArrayList<String> todoList;
-    private final String filePath = "";
+    private final String filePath = "src/main/java/rvt/todo.csv";
 
     public ToDoListCSV() {
         this.todoList = new ArrayList<>();
     }
 
-    public void add(String item) {
-        todoList.add(item);
-    }
-
     public void print() {
-        
         for (int i = 0; i < todoList.size(); i++) {
             System.out.println(todoList.get(i).replace(",", " "));
         }
     }
 
+    private void updateFile() {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath, false))) {
+            pw.flush();
+            pw.println("id,task");
+            for (int i = 0; i < todoList.size(); i++) {
+                int index = i+1;
+                //pw.print(index + ",");
+                pw.println(todoList.get(i));
+            }
+        }
+        catch (IOException ioe) {
+            System.out.println("Error: " + ioe);
+        }
+    }
+
     public void remove(int index) {
         todoList.remove(index - 1);
+        updateFile();
     }
 
     public void loadFromFile() {
         String line;
         boolean isHeader = true;
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/main/java/rvt/todo.csv"));
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null) {
                 if (isHeader) {
                     isHeader = false;
@@ -48,7 +58,18 @@ public class ToDoListCSV {
         }
     }
 
-    /*private int getLastID() {
-        return 0;        
-    }*/   
+    public int getLastID() {
+        return todoList.size();        
+    }
+    
+    public void add(String task) {
+        int id = getLastID() + 1;
+        this.todoList.add(task);
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath, true))) {
+            pw.println(id + "," + task);
+        }
+        catch (IOException ioe) {
+            System.out.println("Error: " + ioe);
+        }
+    }
 }
