@@ -64,9 +64,10 @@ public class ToDoListCSV {
         return todoList.size();        
     }
     
-    public void add(String task) {
+    public void add(String task) throws Exception {
         int id = getLastID() + 1;
         this.todoList.add(task);
+        checkEventString(task);
         try (PrintWriter pw = new PrintWriter(new FileWriter(filePath, true))) {
             pw.println(id + "," + task);
         }
@@ -75,13 +76,11 @@ public class ToDoListCSV {
         }
     }
 
-    public boolean checkEventString(String value) {
+    public boolean checkEventString(String value) throws Exception {
         if (value.matches(valueRegex)) {
-            System.out.println("Pareiza aktivitate");
             return true;
         } else {
-            System.out.println("Nepareiza aktivitate");
-            return false;
+            throw new Exception("Invalid format. Enter a normal task."); 
         }
     }
 }
