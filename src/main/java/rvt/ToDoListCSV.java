@@ -6,6 +6,8 @@ import java.util.*;
 public class ToDoListCSV {
     private ArrayList<String> todoList;
     private final String filePath = "src/main/java/rvt/todo.csv";
+    private final String valueRegex= "^[A-Za-z0-9 ]{3,}$";
+
 
     public ToDoListCSV() {
         this.todoList = new ArrayList<>();
@@ -70,6 +72,16 @@ public class ToDoListCSV {
         }
         catch (IOException ioe) {
             System.out.println("Error: " + ioe);
+        }
+    }
+
+    public boolean checkEventString(String value) {
+        if (value.matches(valueRegex)) {
+            System.out.println("Pareiza aktivitate");
+            return true;
+        } else {
+            System.out.println("Nepareiza aktivitate");
+            return false;
         }
     }
 }
