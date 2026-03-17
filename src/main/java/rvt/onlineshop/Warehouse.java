@@ -26,7 +26,7 @@ public class Warehouse {
 
     public int stock(String product) {
         if (warehouseStock.containsKey(product)) {
-            //gets the STOCK of a product if the product exists
+            // gets the STOCK of a product if the product exists
             return warehouseStock.get(product);
         } else {
             //no product = return 0

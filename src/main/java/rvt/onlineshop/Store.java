@@ -27,7 +27,7 @@ public class Store {
             String product = scanner.nextLine();
 
             /* end the shopping cycle IF the
-             IF user inputs an empty string OR a nonexistent */
+              IF user inputs an empty string OR a nonexistent */
             if (product.isEmpty() || !warehouse.products().contains(product)) {
                 break;
             }

@@ -13,8 +13,8 @@ public class ShoppingCart {
             Item item = new Item(product, 1, price);
             cartMap.put(product, item);
         }
-        //always increase price
-        cartprice += price;
+        // always increase price
+        cartprice += price;  
     }
 
     public int price() {

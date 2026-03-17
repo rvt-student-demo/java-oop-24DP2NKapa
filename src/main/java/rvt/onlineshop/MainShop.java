@@ -6,7 +6,7 @@ public class MainShop {
     public static void main(String[] args) {
     Warehouse warehouse = new Warehouse(); // create a warehouse
 
-    //add assortiment
+    // add assortiment
     warehouse.addProduct("coffee", 5, 10);
     warehouse.addProduct("milk", 3, 20);
     warehouse.addProduct("cream", 2, 55);
