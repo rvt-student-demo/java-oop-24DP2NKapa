@@ -12,7 +12,7 @@ public class Store {
         this.scanner = scanner;
     }
 
-    // the method that handles the customers visit to the store.
+    //the method that handles the customers visit to the store.
     public void shop(String customer) {
         ShoppingCart cart = new ShoppingCart();
         System.out.println("Welcome to the store " + customer);

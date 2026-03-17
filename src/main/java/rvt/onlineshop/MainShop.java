@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MainShop {
     public static void main(String[] args) {
-    Warehouse warehouse = new Warehouse(); // create the warehouse
+    Warehouse warehouse = new Warehouse(); //create the warehouse
 
     // add assortiment
     warehouse.addProduct("coffee", 5, 10);

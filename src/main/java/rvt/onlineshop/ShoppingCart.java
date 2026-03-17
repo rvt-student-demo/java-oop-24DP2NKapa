@@ -9,7 +9,7 @@ public class ShoppingCart {
     public void add(String product, int price) {
         if (cartMap.containsKey(product)) {
             cartMap.get(product).increaseQuantity(); // addresses the VALUE of datatype Item and uses its method    
-        } else { // if the item is new
+        } else { //if the item is new
             Item item = new Item(product, 1, price);
             cartMap.put(product, item);
         }

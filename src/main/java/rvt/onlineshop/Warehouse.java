@@ -5,7 +5,7 @@ import java.util.*;
 public class Warehouse {
     // stores prouct name and its PRICE
     Map<String, Integer> warehousePrices = new HashMap<>();
-    // stores prouct name and its STOCK
+    //stores prouct name and its STOCK
     Map<String, Integer> warehouseStock = new HashMap<>();
 
     public void addProduct(String product, int price, int stock) {
