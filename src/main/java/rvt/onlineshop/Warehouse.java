@@ -29,7 +29,7 @@ public class Warehouse {
             // gets the STOCK of a product if the product exists
             return warehouseStock.get(product);
         } else {
-            //no product = return 0
+            // no product = return 0
             return 0;
         }
     }

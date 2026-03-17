@@ -6,7 +6,7 @@ public class Item {
     private int unitPrice;
 
     public Item(String product, int qty, int unitPrice) {
-        //create the item
+        // create the item
         this.product = product;
         this.qty = qty;
         this.unitPrice = unitPrice;
