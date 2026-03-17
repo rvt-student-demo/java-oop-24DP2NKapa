@@ -10,7 +10,7 @@ public class Box implements Packable {
     public Box (int capacity) {
         this.capacity = capacity;
         this.weight = 0;
-        this.inside = 0;
+        this.inside = 0; 
     }
 
     public void add (Packable item) {

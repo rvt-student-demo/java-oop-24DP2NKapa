@@ -14,7 +14,6 @@ public class MainBox {
         box.add(new CD("Wigwam", "Nuclear Nightclub", 1975));
         box.add(new CD("Rendezvous Park", "Closer to Being Here", 2012));
 
-        //box.add(new Book("Aleksandr Solzhenitsyn", "All Memoirs", 7));
 
         anotherBox.add(new CD("Toby Fox", "Megalovania", 2015));
         anotherBox.add(new CD("Toby Fox", "Another Medium", 2015));
