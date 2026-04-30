@@ -1,9 +1,9 @@
-package rvt;
+package rvt.todo.graphic;
 
 import java.util.*;
 
 public class ToDoList {
-    ArrayList<String> todoList = new ArrayList<>();
+    private ArrayList<String> todoList = new ArrayList<>();
 
     public void add(String item) {
         todoList.add(item);
