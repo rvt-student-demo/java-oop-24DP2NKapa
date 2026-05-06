@@ -5,12 +5,13 @@ import java.util.*;
 
 public class ToDoListCSV {
     private ArrayList<String> todoList;
-    private final String filePath = "src/main/java/rvt/todo.csv";
-    private final String valueRegex= "^[A-Za-z0-9 ]{3,}$";
+    private final String filePath = "src/main/java/rvt/todo/graphic/todo.csv";
+    private final String valueRegex= "^[A-Za-z0-9 ]{3,}";
 
 
     public ToDoListCSV() {
         this.todoList = new ArrayList<>();
+        loadFromFile();
     }
 
     public void print() {
@@ -19,14 +20,16 @@ public class ToDoListCSV {
         }
     }
 
+    public ArrayList<String> getAll() {
+        return new ArrayList<>(todoList);
+    }
+
     private void updateFile() {
         try (PrintWriter pw = new PrintWriter(new FileWriter(filePath, false))) {
             pw.flush();
             pw.println("id,task");
             for (int i = 0; i < todoList.size(); i++) {
-                int index = i+1;
-                //pw.print(index + ",");
-                pw.println(todoList.get(i));
+                pw.println((i + 1) + "," + todoList.get(i));
             }
         }
         catch (IOException ioe) {
@@ -51,7 +54,10 @@ public class ToDoListCSV {
                 }
                 
                 if (!line.trim().isEmpty()) {
-                    todoList.add(line.trim());
+                    String[] parts = line.trim().split(",", 2); // split into max 2 parts
+                    if (parts.length == 2) {
+                        todoList.add(parts[1]); // store only the task part
+                    }
                 }
             }
             br.close();
@@ -65,9 +71,9 @@ public class ToDoListCSV {
     }
     
     public void add(String task) throws Exception {
+        checkEventString(task);
         int id = getLastID() + 1;
         this.todoList.add(task);
-        checkEventString(task);
         try (PrintWriter pw = new PrintWriter(new FileWriter(filePath, true))) {
             pw.println(id + "," + task);
         }
