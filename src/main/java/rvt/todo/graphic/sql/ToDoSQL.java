@@ -37,7 +37,20 @@ public class ToDoSQL {
     }
 
     public void remove(int index) {
+        String sql = "DELETE FROM todo WHERE id=?";
+        try (
+            Connection conn =
+                DriverManager.getConnection(db_url);
 
+            PreparedStatement prst =
+                conn.prepareStatement(sql);
+        ) {
+            prst.setInt(1, index);
+            prst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Aw man, no deletin' today, dawg");
+        }
     }
 
     public ArrayList<String> getAll() {
@@ -47,18 +60,18 @@ public class ToDoSQL {
             Connection conn =
                 DriverManager.getConnection(db_url);
 
-            PreparedStatement stmt =
+            PreparedStatement prst =
                 conn.prepareStatement(sql);
 
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = prst.executeQuery();
         ) {
             while (rs.next()) {
 
                 int id = rs.getInt("id");
                 String task = rs.getString("task");
 
-                System.out.println(id + ": " + task);
-                util.add(id + ": " + task);
+                System.out.println(task + " (ID:" + " " + id + ")");
+                util.add(task + " (ID:" + " " + id + ")");
             }
         } catch (Exception e) {
             System.out.println("Ouch! Errors!");

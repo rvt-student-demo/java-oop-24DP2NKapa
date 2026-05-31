@@ -16,8 +16,9 @@ public class MyGui {
 		textArea.setText("");
 		for (int i = 0; i < array.size(); i++) {
 			String str = array.get(i);
+			int readableI = i+1;
 			str = str.replace(String.valueOf(','), " ");
-			textArea.append(str + "\n");
+			textArea.append(readableI + ": " + str + "\n");
 		}
 	}
 
@@ -58,10 +59,15 @@ public class MyGui {
         });
 		buttonRemove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                logAction();
-				String window = JOptionPane.showInputDialog("Enter index of the task to be removed (TYPE IN A VALID INTEGER!):");
-				int index = Integer.valueOf(window);
-				todo.remove(index);
+				try {
+				    logAction();
+					String window = JOptionPane.showInputDialog("Enter index of the task to be removed (TYPE IN A VALID INTEGER!):");
+					int index = Integer.valueOf(window);
+					todo.remove(index);
+				} catch (NumberFormatException nfe) {
+					System.out.println("ERROR: So either the dev, the Java or the AWT/Swing are dumb and they don't know how to handle a Cancel, so ignore it.");
+				}
+
             }
         });
 		buttonList.addActionListener(new ActionListener() {
